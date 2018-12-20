@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		980FA32B2194179200628537 /* ZZDownloadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 980FA32A2194179200628537 /* ZZDownloadModel.m */; };
+		980FA32E21952BE400628537 /* ZZDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 980FA32D21952BE400628537 /* ZZDownloadManager.m */; };
+		981C452821B50E010099E475 /* ZZDownloadingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 981C452721B50E010099E475 /* ZZDownloadingCell.m */; };
+		98331B8F219EBDE1008DCCDC /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98331B8E219EBDE1008DCCDC /* ListViewController.m */; };
+		98331B9221A25DBB008DCCDC /* DownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98331B9121A25DBB008DCCDC /* DownloadViewController.m */; };
+		98331B9521A2663A008DCCDC /* ZZDownloadModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 98331B9421A2663A008DCCDC /* ZZDownloadModelManager.m */; };
 		985D075C21928C9100DEF1BA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 985D075B21928C9100DEF1BA /* AppDelegate.m */; };
 		985D075F21928C9100DEF1BA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 985D075E21928C9100DEF1BA /* ViewController.m */; };
 		985D076221928C9100DEF1BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 985D076021928C9100DEF1BA /* Main.storyboard */; };
@@ -15,6 +21,10 @@
 		985D076A21928C9100DEF1BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 985D076921928C9100DEF1BA /* main.m */; };
 		985D077421928C9100DEF1BA /* ZZDownloadManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 985D077321928C9100DEF1BA /* ZZDownloadManagerTests.m */; };
 		985D077F21928C9100DEF1BA /* ZZDownloadManagerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 985D077E21928C9100DEF1BA /* ZZDownloadManagerUITests.m */; };
+		985D078F21928F7600DEF1BA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 985D078D21928F7500DEF1BA /* Reachability.m */; };
+		985D07922192910400DEF1BA /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 985D07902192910400DEF1BA /* AFNetworkReachabilityManager.m */; };
+		988397F62192D2A700DB176C /* ZZDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 988397F52192D2A700DB176C /* ZZDownloadOperation.m */; };
+		98D6ADFF21CA1D3C00757BFD /* ZZDownloadUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D6ADFE21CA1D3C00757BFD /* ZZDownloadUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +45,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		980FA3292194179200628537 /* ZZDownloadModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZDownloadModel.h; sourceTree = "<group>"; };
+		980FA32A2194179200628537 /* ZZDownloadModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZDownloadModel.m; sourceTree = "<group>"; };
+		980FA32C21952BE400628537 /* ZZDownloadManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZDownloadManager.h; sourceTree = "<group>"; };
+		980FA32D21952BE400628537 /* ZZDownloadManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZDownloadManager.m; sourceTree = "<group>"; };
+		981C452621B50E010099E475 /* ZZDownloadingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZDownloadingCell.h; sourceTree = "<group>"; };
+		981C452721B50E010099E475 /* ZZDownloadingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZDownloadingCell.m; sourceTree = "<group>"; };
+		98331B8D219EBDE1008DCCDC /* ListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		98331B8E219EBDE1008DCCDC /* ListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		98331B9021A25DBB008DCCDC /* DownloadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownloadViewController.h; sourceTree = "<group>"; };
+		98331B9121A25DBB008DCCDC /* DownloadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownloadViewController.m; sourceTree = "<group>"; };
+		98331B9321A2663A008DCCDC /* ZZDownloadModelManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZDownloadModelManager.h; sourceTree = "<group>"; };
+		98331B9421A2663A008DCCDC /* ZZDownloadModelManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZDownloadModelManager.m; sourceTree = "<group>"; };
 		985D075721928C9100DEF1BA /* ZZDownloadManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZZDownloadManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		985D075A21928C9100DEF1BA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		985D075B21928C9100DEF1BA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +73,14 @@
 		985D077A21928C9100DEF1BA /* ZZDownloadManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZDownloadManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		985D077E21928C9100DEF1BA /* ZZDownloadManagerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZDownloadManagerUITests.m; sourceTree = "<group>"; };
 		985D078021928C9100DEF1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		985D078D21928F7500DEF1BA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		985D078E21928F7600DEF1BA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		985D07902192910400DEF1BA /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		985D07912192910400DEF1BA /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		988397F42192D2A700DB176C /* ZZDownloadOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZDownloadOperation.h; sourceTree = "<group>"; };
+		988397F52192D2A700DB176C /* ZZDownloadOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZDownloadOperation.m; sourceTree = "<group>"; };
+		98D6ADFD21CA1D3C00757BFD /* ZZDownloadUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZDownloadUtility.h; sourceTree = "<group>"; };
+		98D6ADFE21CA1D3C00757BFD /* ZZDownloadUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZDownloadUtility.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +131,21 @@
 		985D075921928C9100DEF1BA /* ZZDownloadManager */ = {
 			isa = PBXGroup;
 			children = (
+				985D07912192910400DEF1BA /* AFNetworkReachabilityManager.h */,
+				985D07902192910400DEF1BA /* AFNetworkReachabilityManager.m */,
+				985D078E21928F7600DEF1BA /* Reachability.h */,
+				985D078D21928F7500DEF1BA /* Reachability.m */,
+				985D078C21928DBF00DEF1BA /* ZZDownloadManger */,
 				985D075A21928C9100DEF1BA /* AppDelegate.h */,
 				985D075B21928C9100DEF1BA /* AppDelegate.m */,
 				985D075D21928C9100DEF1BA /* ViewController.h */,
 				985D075E21928C9100DEF1BA /* ViewController.m */,
+				98331B8D219EBDE1008DCCDC /* ListViewController.h */,
+				98331B8E219EBDE1008DCCDC /* ListViewController.m */,
+				98331B9021A25DBB008DCCDC /* DownloadViewController.h */,
+				98331B9121A25DBB008DCCDC /* DownloadViewController.m */,
+				981C452621B50E010099E475 /* ZZDownloadingCell.h */,
+				981C452721B50E010099E475 /* ZZDownloadingCell.m */,
 				985D076021928C9100DEF1BA /* Main.storyboard */,
 				985D076321928C9100DEF1BA /* Assets.xcassets */,
 				985D076521928C9100DEF1BA /* LaunchScreen.storyboard */,
@@ -130,6 +171,23 @@
 				985D078021928C9100DEF1BA /* Info.plist */,
 			);
 			path = ZZDownloadManagerUITests;
+			sourceTree = "<group>";
+		};
+		985D078C21928DBF00DEF1BA /* ZZDownloadManger */ = {
+			isa = PBXGroup;
+			children = (
+				988397F42192D2A700DB176C /* ZZDownloadOperation.h */,
+				988397F52192D2A700DB176C /* ZZDownloadOperation.m */,
+				980FA3292194179200628537 /* ZZDownloadModel.h */,
+				980FA32A2194179200628537 /* ZZDownloadModel.m */,
+				980FA32C21952BE400628537 /* ZZDownloadManager.h */,
+				980FA32D21952BE400628537 /* ZZDownloadManager.m */,
+				98331B9321A2663A008DCCDC /* ZZDownloadModelManager.h */,
+				98331B9421A2663A008DCCDC /* ZZDownloadModelManager.m */,
+				98D6ADFD21CA1D3C00757BFD /* ZZDownloadUtility.h */,
+				98D6ADFE21CA1D3C00757BFD /* ZZDownloadUtility.m */,
+			);
+			path = ZZDownloadManger;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,6 +325,16 @@
 			files = (
 				985D075F21928C9100DEF1BA /* ViewController.m in Sources */,
 				985D076A21928C9100DEF1BA /* main.m in Sources */,
+				98331B8F219EBDE1008DCCDC /* ListViewController.m in Sources */,
+				98D6ADFF21CA1D3C00757BFD /* ZZDownloadUtility.m in Sources */,
+				98331B9521A2663A008DCCDC /* ZZDownloadModelManager.m in Sources */,
+				980FA32B2194179200628537 /* ZZDownloadModel.m in Sources */,
+				98331B9221A25DBB008DCCDC /* DownloadViewController.m in Sources */,
+				985D07922192910400DEF1BA /* AFNetworkReachabilityManager.m in Sources */,
+				988397F62192D2A700DB176C /* ZZDownloadOperation.m in Sources */,
+				980FA32E21952BE400628537 /* ZZDownloadManager.m in Sources */,
+				981C452821B50E010099E475 /* ZZDownloadingCell.m in Sources */,
+				985D078F21928F7600DEF1BA /* Reachability.m in Sources */,
 				985D075C21928C9100DEF1BA /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
