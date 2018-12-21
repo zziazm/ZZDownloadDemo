@@ -102,7 +102,7 @@
 
 @implementation ZZDownloadModel
 
-- (instancetype)initWithURL:(NSString *)url{
+- (instancetype)initWithURL:(NSString *)url isInitTask:(BOOL)isInitTask{
     if (!url) {
         return nil;
     }
@@ -111,8 +111,10 @@
     }
     self = [super init];
     if (self) {
-        NSURLSessionDownloadTask *task = [[ZZDownloadManager shareManager].session downloadTaskWithURL:[NSURL URLWithString:url]];
-        self.downloadTask = task;
+        if (isInitTask) {
+            NSURLSessionDownloadTask *task = [[ZZDownloadManager shareManager].session downloadTaskWithURL:[NSURL URLWithString:url]];
+            self.downloadTask = task;
+        }
         self.url = url;
         self.startTime = [self dateToString:[NSDate date]];
         _progress = [ZZDownloadProgress new];
@@ -137,60 +139,14 @@
 - (NSString *)fileName{
     return [self.url lastPathComponent];
 }
-//- (instancetype)initWithUrl:(NSString *)url{
-//    if (self = [super init]) {
-//        _url = url;
-//        _task = [[ZZDownloadManager shareManager] downloadTaskWithUrl:url progress:nil completionHandler:nil];
-//
-//    }
-//    return self;
-//}
 
 - (instancetype)init{
     if (self = [super init]) {
         _progress = [ZZDownloadProgress new];
     }
-//    if (self = [super init]) {
-//
-//    }
-//    return self;
     return self;
 }
-//- (NSString *)url{
-//    return self.downloadTask.currentRequest.URL.absoluteString;
-//}
 
-//- (instancetype)initWithTask:(NSURLSessionDownloadTask *)task{
-//    if (task == nil) {
-//        return nil;
-//    }
-//    if (self = [super init]) {
-//         _progress = [ZZDownloadProgress new];
-//         _downloadTask = task;
-//    }
-//    return self;
-//}
-
-//- (void)startDownload{
-//    if (self.state == ZZDownloadModelRunningState) {
-//        return;
-//    }
-//    if (self.state == ZZDownloadModelWillStartState) {
-//        if (self.resumeData) {
-//            [self resume];
-//        }else{
-//            if (!_downloadTask) {
-//                 _downloadTask = [[ZZDownloadManager shareManager].session downloadTaskWithURL:[NSURL URLWithString:_url]];
-//            }
-//            _state = ZZDownloadModelRunningState;
-//            [self saveInfo];
-//            _date = [NSDate date];
-//            _bytes = 0;
-//            [_downloadTask resume];
-//
-//        }
-//    }
-//}
 
 - (void)saveInfo{
     [[ZZDownloadManager shareManager] saveDownloadInfo:self];
@@ -324,35 +280,50 @@ expectedTotalBytes:(int64_t)expectedTotalBytes{
     
     if (self.state == ZZDownloadModelPauseState) {
         if (self.resumeData) {
-           
-            self.downloadTask = [[ZZDownloadManager shareManager].session downloadTaskWithResumeData:self.resumeData];
-            [self.downloadTask resume];
-            self.date = [NSDate date];
-            self.state = ZZDownloadModelRunningState;
-            [self saveInfo];
+            [self resumeWithResumeData:self.resumeData];
         }
     }
-    
-    if (self.state == ZZDownloadModelWillStartState) {
+    else if (self.state == ZZDownloadModelWillStartState) {
         if (self.resumeData) {
-            self.downloadTask = [[ZZDownloadManager shareManager].session downloadTaskWithResumeData:self.resumeData];
-            [self.downloadTask resume];
-            self.date = [NSDate date];
-            self.state = ZZDownloadModelRunningState;
-            [self saveInfo];
+            [self resumeWithResumeData:self.resumeData];
         }else{
-            if (!self.downloadTask) {
-                self.downloadTask = [[ZZDownloadManager shareManager].session downloadTaskWithURL:[NSURL URLWithString:self.url]];
-
-            }
-            [self.downloadTask resume];
-            self.date = [NSDate date];
-            self.state = ZZDownloadModelRunningState;
-            [self saveInfo];
+            [self recoverResume];
         }
         
     }
-    
+   else if (self.state == ZZDownloadModelRunningState){
+       if (self.downloadTask) {
+           return;
+       }else{
+           if (self.resumeData) {
+               [self resumeWithResumeData:self.resumeData];
+           }else{
+               [self recoverResume];
+           }
+       }
+      }
+}
+
+
+- (void)resumeWithResumeData:(NSData *)resumeData{
+    if (self.resumeData) {
+        self.downloadTask = [[ZZDownloadManager shareManager].session downloadTaskWithResumeData:self.resumeData];
+        [self.downloadTask resume];
+        self.date = [NSDate date];
+        self.state = ZZDownloadModelRunningState;
+        [self saveInfo];
+    }
+}
+
+- (void)recoverResume{
+    if (!self.downloadTask) {
+        self.downloadTask = [[ZZDownloadManager shareManager].session downloadTaskWithURL:[NSURL URLWithString:self.url]];
+        
+    }
+    [self.downloadTask resume];
+    self.date = [NSDate date];
+    self.state = ZZDownloadModelRunningState;
+    [self saveInfo];
 }
 
 - (void)cancel{

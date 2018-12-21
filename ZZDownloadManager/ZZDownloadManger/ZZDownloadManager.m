@@ -71,21 +71,18 @@
         con.timeoutIntervalForRequest = 10;
         con.sessionSendsLaunchEvents = YES;
         _session = [NSURLSession sessionWithConfiguration:con delegate:self delegateQueue:nil];
-        
+
         //查看是否有进行中的下载
         NSArray *tasks = [self sessionDownloadTasks];
         for (NSURLSessionDownloadTask *task in tasks) {
             if (task.state == NSURLSessionTaskStateRunning) {
                 ZZDownloadModel *model = _downloadModelDic[task.currentRequest.URL.absoluteString];
-                if (model.state == ZZDownloadModelRunningState) {
-                    model.downloadTask = task;
-                }
+                model.downloadTask = task;
             }
         }
     }
     return self;
 }
-
 
 - (NSMutableArray *)loadDownloadList{
     NSMutableArray *array = @[].mutableCopy;
@@ -161,19 +158,25 @@
 }
 
 #pragma mark --get download model
-- (ZZDownloadModel *)downloadModelWithURL:(NSString *)url{
-    ZZDownloadModel *model = [[ZZDownloadModel alloc] initWithURL:url];
+- (ZZDownloadModel *)downloadModelWithURL:(NSString *)url isInitTask:(BOOL)isInitTask{
+    ZZDownloadModel *model = [[ZZDownloadModel alloc] initWithURL:url isInitTask:isInitTask] ;
     return model;
 }
 
 - (ZZDownloadModel *)addDownloadModelWithURL:(NSString *)url{
-    ZZDownloadModel *model = [self downloadModelWithURL:url];
+    BOOL isInitTask = YES;
+    if (self.downloadingCount == _maxCount)  {
+        isInitTask = NO;
+    }
+    
+    ZZDownloadModel *model = [self downloadModelWithURL:url isInitTask:isInitTask ];
     if (model) {
         [_downloadModelList addObject:model];
         [_downloadModelDic setObject:model forKey:url];
         [self saveDownloadInfo:model];
     }
     if (self.downloadingCount == _maxCount) {
+        
     }else{//没有达到最大下载数量就开始下载
         [model resume];
         self.downloadingCount++;
@@ -198,27 +201,22 @@ didCompleteWithError:(nullable NSError *)error{
     }
     NSAssert(model != nil, @"model不能为nil");
     NSData *resumeData = [error.userInfo objectForKey:NSURLSessionDownloadTaskResumeData];
-    if (resumeData) {
+    if (resumeData) {//user 主动暂停了应用或者等待下载
         if (model.state == ZZDownloadModelPauseState || model.state == ZZDownloadModelWillStartState) {
             model.resumeData = resumeData;
             [self saveDownloadInfo:model];
-            
         }else if(model.state == ZZDownloadModelRunningState){//如果是用户主动kill了应用，重启应用也可以在这里获取到resumedata
             model.resumeData = resumeData;
-            model.state = ZZDownloadModelWillStartState;
             [model resume];
         }
     }else{//下载完成或下载失败
         
-        if (error) {
-            
-        }else{
-
-        }
+//        if (model.state == ZZDownloadModelRunningState || model.state == ZZDownloadModelWillStartState) {
+//            return;
+//        }
+        
+        
         [self.downloadModelList removeObject:model];
-        if (model.url == nil) {
-            NSLog(@"bbbbbbbbbbbbb%@", model);
-        }
         [self.downloadModelDic removeObjectForKey:model.url];
 
         NSString *path = [[self downloadFileDirectory ] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", model.fileName]];
@@ -305,7 +303,6 @@ didFinishDownloadingToURL:(NSURL *)location{
  totalBytesWritten:(int64_t)totalBytesWritten
 totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite{
     NSLog(@"%s", __func__);
-    
 
     ZZDownloadModel *model = [self modelWithTask:downloadTask];
     [model URLSession:session downloadTask:downloadTask didWriteData:bytesWritten totalBytesWritten:totalBytesWritten totalBytesExpectedToWrite:totalBytesExpectedToWrite];
@@ -546,7 +543,8 @@ expectedTotalBytes:(int64_t)expectedTotalBytes{
     [dic setObject:@(model.state) forKey:@"state"];
 
     NSString *path = [[self downloadFileDirectory ] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", model.fileName]];
-    [dic writeToFile:path atomically:YES];
+    BOOL s = [dic writeToFile:path atomically:YES];
+    NSAssert(s, @"写入失败");
 }
 
 - (BOOL)fileExist:(NSString *)fileName{

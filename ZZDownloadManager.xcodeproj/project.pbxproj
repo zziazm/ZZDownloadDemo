@@ -499,10 +499,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4QQ73282F5;
+				DEVELOPMENT_TEAM = 54SFE2ZV26;
 				INFOPLIST_FILE = ZZDownloadManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = zm.ZZDownloadManager;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pwccn.coffe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -513,10 +513,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4QQ73282F5;
+				DEVELOPMENT_TEAM = 54SFE2ZV26;
 				INFOPLIST_FILE = ZZDownloadManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = zm.ZZDownloadManager;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pwccn.coffe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

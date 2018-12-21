@@ -37,7 +37,6 @@
 
 - (ZZDownloadModel *)addDownloadModelWithURL:(NSString *)url;
 
-//- (ZZDownloadModel *)downLoadingModelForURLString:(NSString *)URLString;
 
 - (void)saveDownloadInfo:(ZZDownloadModel *)model;
 

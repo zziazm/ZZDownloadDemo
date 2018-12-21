@@ -89,7 +89,7 @@
         
     }else{
 //        ZZDownloadModel *downloadModel = [[ZZDownloadManager shareManager] startDownload:url];
-        ZZDownloadModel *downloadModel = [[ZZDownloadManager shareManager] addDownloadModelWithURL:url];
+        ZZDownloadModel *downloadModel = [[ZZDownloadManager shareManager] addDownloadModelWithURL:url ];
         if (downloadModel) {
             [tableView reloadData];
         }

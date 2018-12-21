@@ -54,7 +54,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, copy) NSString *url;
 //@property (nonatomic, strong) NSDate *startDate;
-@property (nonatomic, strong) NSDate *startTime;
+@property (nonatomic, strong) NSString *startTime;
 
 @property (nonatomic, copy) NSString *fileName;
 //@property (nonatomic, copy) NSString *destinyPath;
@@ -69,7 +69,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy) ZZDownloadCompleteBlock completeBlock;
 
 //- (instancetype)initWithTask:(NSURLSessionDownloadTask * )task;
-- (instancetype)initWithURL:(NSString *)url;
+- (instancetype)initWithURL:(NSString *)url isInitTask:(BOOL)isInitTask;
 //- (instancetype)initWithResumeData:(NSData *)resumeData url:(NSString *)url;
 //- (void)startDownload;
 
