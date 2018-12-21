@@ -3,7 +3,7 @@
 
 
 
-###断点续传
+### 断点续传
 
 断点续传的原理是在HTTP1.1协议（RFC2616）中定义了断点续传相关的HTTP头的Range和Content-Range字段，支持只请求资源的一部分。
 Range：可以请求文件资源的一个或者多个子范围。
@@ -17,11 +17,11 @@ Range：可以请求文件资源的一个或者多个子范围。
 
 Content-Range：字段说明服务器返回了文件的某个范围及文件的总长度。这时Content-Length字段就不是整个文件的大小了，而是对应文件这个范围的字节数，这一点一定要注意。一般格式，Content-Range: bytes 500-999/1000　　
 
-###NSURlSessionDownloadTask
+### NSURlSessionDownloadTask
 
 iOS可以使用NSURlSessionDownloadTask来实现下载的断点续传功能，它提供了resumeData来实现断点续传功能，不需要在httpheader里设置Range了。网上关于NSURlSessionDownloadTask实现断点续传下载的代码有很多，这里总结下自己遇到的问题。
 
-###下载暂停和恢复
+### 下载暂停和恢复
 
 NSURlSessionDownloadTask有两种实现暂停的方法：
 - ` suspend`：直接调`suspend`方法可以使task暂停下载，恢复下载可以调用resume方法，；
@@ -69,7 +69,7 @@ NSURlSessionDownloadTask有两种实现暂停的方法：
 
 
 
-#####NSURLSessionDownloadTask在后台下载
+##### NSURLSessionDownloadTask在后台下载
 
 NSURLSessionDownloadTask是支持后台下载的。
 [downloading_files_in_the_background](https://developer.apple.com/documentation/foundation/url_loading_system/downloading_files_in_the_background)
@@ -83,7 +83,7 @@ NSURLSessionDownloadTask是支持后台下载的。
 - 如果app被系统terminate了（比如app在后台时间过长可能会被系统强制杀掉），系统会继续在后台管理session的task，当task完成时系统会启动app，此时只要使用相同的id创建session就会回调代理方法了；
 - 如果使用户主动kill了app，系统会取消session的task，重新启动时，用相同的id创建session，会调用代理方法`URLSession:task:didCompleteWithError:`，可以获取到resumeData来恢复下载。
 
-#####在后台下载完成时的处理
+##### 在后台下载完成时的处理
 
 下载任务在后台完成后：
 如果app在后台，但是没有被系统teminate，系统会resume 应用并且调用UIApplicationDelegate的代理方法`application:handleEventsForBackgroundURLSession:completionHandler:`。之后会调用session的代理方法。
@@ -91,12 +91,12 @@ NSURLSessionDownloadTask是支持后台下载的。
 
 调用这个方法获得的completionHandler可以让系统知道您的应用程序的用户界面已更新，并且可以拍摄新的快照。一般在session的代理方法`URLSessionDidFinishEventsForBackgroundURLSession:`中调用。
 
-######在下载过程中用户主动kill app
+###### 在下载过程中用户主动kill app
 
 用户主动kill app会导致下载task取消，当应用再次启动时，需要使用之前创建session的identifier重新创建session，之后会调用`URLSession: task:
 didCompleteWithError:`方法，从error中可以获取resumeData来恢复下载。
 
-###系统终止了app，重启时获取下载中的task
+### 系统终止了app，重启时获取下载中的task
 
 比如应用退到后台，因为内存问题被系统teminate，这时候下载任务不会取消，系统会继续管理下载task，此时若重新打开应用，可以使用相同的identifier创建session，然后通过
 ```
